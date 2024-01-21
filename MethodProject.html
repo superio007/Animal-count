@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>double argument event and argument</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<style>
+    #tigers,#moose,#kangaroos{
+        border: 2px dotted black;
+    }
+    img{
+        width: 250px;
+        height: 500px;
+    }
+    #App{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+    }
+</style>
+<body>
+    <h1 style="text-align: center;">Animal Count</h1>
+    <div id="App">
+        <div id="tigers">
+            <img :src="tigerUrl" alt="">
+            <p>{{"tigers count :" + tigers}}</p>
+            <button v-on:click="addAnimal($event,1)">+1</button>
+            <button v-on:click="addAnimal($event,5)">+5</button>
+            <button v-on:click="addAnimal($event,6)">+6</button>
+            <button v-on:click="addAnimal($event,-1)">-1</button>
+            <button v-on:click="tigers=0">reset</button>
+        </div>
+        <div id="moose">
+            <img :src="mooseUrl" alt="">
+            <p>{{"moose count :" + moose}}</p>
+            <button v-on:click="addAnimal($event,1)">+1</button>
+            <button v-on:click="addAnimal($event,5)">+5</button>
+            <button v-on:click="addAnimal($event,6)">+6</button>
+            <button v-on:click="addAnimal($event,-1)">-1</button>
+            <button v-on:click="moose=0">reset</button>
+        </div>
+        <div id="kangaroos">
+            <img :src="kangarooUrl" alt="">
+            <p>{{"kangaroos count :" + kangaroos}}</p>
+            <button v-on:click="addAnimal($event,1)">+1</button>
+            <button v-on:click="addAnimal($event,5)">+5</button>
+            <button v-on:click="addAnimal($event,6)">+6</button>
+            <button v-on:click="addAnimal($event,-1)">-1</button>
+            <button v-on:click="kangaroos=0">reset</button>
+        </div>
+    </div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data(){
+            return{
+                tigers : 0,
+                moose : 0,
+                kangaroos : 0,
+                tigerUrl : "img_tiger_square.jpeg",
+                mooseUrl : "img_moose_square.jpeg",
+                kangarooUrl : "img_kangaroo_square.jpeg"
+            }
+        },
+        methods:{
+            addAnimal(e,number) {
+                if(e.target.parentElement.id==="tigers") {
+                    this.tigers+=number
+                }
+                else if(e.target.parentElement.id==="moose") {
+                    this.moose+=number
+                }
+                else {
+                    this.kangaroos+=number  
+                }
+            }
+        }
+    })
+    app.mount('#App')
+</script>
+</html>
